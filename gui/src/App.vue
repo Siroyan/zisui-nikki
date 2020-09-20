@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <calendar/>
+  <div id="app" class="container text-center">
+    <calendar :meals="meals" />
   </div>
 </template>
 
@@ -11,7 +11,40 @@ export default {
   name: 'app',
   components: {
     calendar
-  }
+  },
+  data: () => ({
+    meals: [{
+        date: new Date(2020, 8, 1),
+        mealtype: 'dinner',
+        comment: '肉野菜炒め',
+      }, {
+        date: new Date(2020, 8, 10),
+        mealtype: 'dinner',
+        comment: '肉野菜炒め',
+      }, {
+        date: new Date(2020, 8, 1),
+        mealtype: 'breakfast',
+        comment: 'シリアル',
+      }, {
+        date: new Date(2020, 8, 10),
+        mealtype: 'lunch',
+        comment: '焼きそば',
+      }]
+  }),
+  methods: {
+
+  },
+  mounted: function() {
+    // this.meals = JSON.parse(localStorage.getItem('meals')) || [];
+  },
+  watch: {
+    meals: {
+      handler: function() {
+        localStorage.setItem('meals', JSON.stringify(this.meals));
+      },
+      deep: true
+    }
+  },
 }
 </script>
 
