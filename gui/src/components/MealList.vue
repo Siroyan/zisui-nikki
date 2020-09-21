@@ -1,17 +1,23 @@
 <template>
   <div class="mx-auto pb-4">
-    <div class="card">
-      <img src="../assets/dummy-meal.png" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">{{mealOfSelectedDay.date}}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <!-- 投稿が存在する場合 -->
+    <div v-if="mealsOfSelectedDay.length">
+      <div v-for="meal in mealsOfSelectedDay" :key="meal.id" class="card mb-4">
+        <img src="../assets/dummy-meal.png" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{meal.date}}</h5>
+          <p class="card-text">{{meal.comment}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{meal.mealtype}}</li>
+        </ul>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
     </div>
+    <!-- 投稿が存在する場合 -->
+    <div v-else>
+      投稿がありません
+    </div>
+
   </div>
 </template>
 
@@ -19,21 +25,22 @@
 export default {
   name: 'MealList',
   props: {
-    meals: Array,
-    selectedDay: Date
-  },
-  data: () => ({
-
-  }),
-  computed: {
-    mealOfSelectedDay: function() {
-      return this.meals.filter(function(meal) {
-        return meal.date === this.selectedDay;
-      })
+    meals: {
+      type: Array,
+      required: true
+    },
+    selectedDay: {
+      type: Date,
+      required: true
     }
   },
-  methods: {
-
+  computed: {
+    mealsOfSelectedDay: function() {
+      const selectedDay = this.selectedDay;
+      return this.meals.filter(meal => {
+        return meal.date.getTime() === selectedDay.getTime();
+      });
+    },
   },
 }
 </script>

@@ -1,14 +1,18 @@
 <template>
   <div>
-    <v-date-picker v-model='date' mode="single" is-inline :attributes="attributes"></v-date-picker>
+    <v-date-picker v-model='date' mode="single" is-inline :attributes="attributes" class="mx-auto"></v-date-picker>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'calendar',
+export default {  
+  name: 'Calendar',
   props: {
-    meals: {}
+    meals: {
+      date: Date,
+      mealtype: String,
+      comment: String
+    }
   },
   data: () => ({
     date: new Date(),
@@ -27,8 +31,12 @@ export default {
       return attr;
     }
   },
-  methods: {
-
+  watch: {
+    date: {
+      handler: function() {
+        this.$emit(`change-day`, this.date);
+      }
+    }
   }
 }
 </script>
