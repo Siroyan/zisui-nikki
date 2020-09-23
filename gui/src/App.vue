@@ -1,13 +1,8 @@
 <template>
-  <div id="app" class="container text-center">
+  <div id="app" class="container">
     <div class="row">
-      <div class="col-1">
-        <!-- なにか -->
-      </div>
-      <Calendar :meals="meals" @change-day="changeDay" class="col-2" />
-      <div class="col-9">
-        <MealList :meals="meals" :selectedDay="selectedDay" class="col-9" />
-      </div>
+      <Calendar :meals="meals" @change-day="changeDay" class="col-4" />
+      <MealList :meals="meals" :selectedDay="selectedDay" class="col-8" />
     </div>
   </div>
 </template>
@@ -36,7 +31,7 @@ export default {
         comment: '肉野菜炒め',
       }, {
         id: new Date().getTime().toString(16),
-        date: new Date(2020, 8, 1),
+        date: new Date(2020, 8, 10),
         mealtype: 'breakfast',
         comment: 'シリアル',
       }, {

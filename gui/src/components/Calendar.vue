@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-date-picker v-model='date' mode="single" is-inline :attributes="attributes" class="mx-auto"></v-date-picker>
+    <v-date-picker v-model='date' mode="single" is-inline :attributes="attributes"></v-date-picker>
   </div>
 </template>
 
