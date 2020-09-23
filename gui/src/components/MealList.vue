@@ -17,7 +17,6 @@
     <div v-else>
       投稿がありません
     </div>
-
   </div>
 </template>
 
@@ -44,7 +43,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-
-</style>
