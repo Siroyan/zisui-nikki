@@ -2,9 +2,9 @@
   <div id="app" class="container">
     <div class="row">
       <div class="col-3">
-        <button type="button" class="btn btn-block btn-primary mb-4" style="background-color: #a6658d; border-style: none;">投稿</button>
-        <MealPostModal />
-        <Calendar :meals="meals" @change-day="changeDay" />
+        <button @click="modalShow" type="button" class="btn btn-block btn-primary mb-4" style="background-color: #a6658d; border-style: none;">投稿</button>
+        <MealPostModal ref="child"/>
+        <Calendar :meals="meals" @change-day="changeDay"/>
       </div>
       <div class="col-9">
         <MealList :meals="meals" :selectedDay="selectedDay" style="width: 600px" class="mx-auto"/>
@@ -16,7 +16,7 @@
 <script>
 import Calendar from './components/Calendar.vue'
 import MealList from './components/MealList.vue'
-import MealPostModal from './components/MealPostModal.vue'
+import MealPostModal from './components/MealList.vue'
 
 export default {
   name: 'app',
@@ -33,18 +33,14 @@ export default {
         title: '肉野菜炒め',
         mealtype: 'Dinner',
         cost: 250,
-      },{
-        id: new Date().getTime().toString(16),
-        date: new Date(2020, 8, 10),
-        title: '肉野菜炒め',
-        mealtype: 'Dinner',
-        cost: 250,
       }]
   }),
   methods: {
     changeDay: function(selectedDay) {
       this.$set(this, 'selectedDay', selectedDay);
-      // this.selectedDay = selectedDay;
+    },
+    modalShow: function() {
+      this.$refs.child.$emit('show');
     }
   },
   mounted: function() {
@@ -60,3 +56,4 @@ export default {
   },
 }
 </script>
+
