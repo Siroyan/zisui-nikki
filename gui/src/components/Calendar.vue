@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-date-picker v-model='date' mode="single" is-inline :attributes="attributes"></v-date-picker>
+    <v-date-picker is-expanded v-model='date' mode="single" is-inline :attributes="attributes"></v-date-picker>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     meals: {
       date: Date,
       mealtype: String,
-      comment: String
+      title: String
     }
   },
   data: () => ({
