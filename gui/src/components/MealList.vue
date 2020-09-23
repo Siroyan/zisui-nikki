@@ -1,9 +1,9 @@
 <template>
-  <div class="mx-auto pb-4">
+  <div class="pb-4">
     <!-- 投稿が存在する場合 -->
     <div v-if="mealsOfSelectedDay.length">
       <div v-for="meal in mealsOfSelectedDay" :key="meal.id" class="card mb-4">
-        <img src="../assets/dummy-meal.png" class="card-img-top">
+        <img src="../assets/dummy-meal.jpg" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{meal.date}}</h5>
           <p class="card-text">{{meal.comment}}</p>
