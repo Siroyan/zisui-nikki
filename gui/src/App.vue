@@ -2,8 +2,8 @@
   <div id="app" class="container">
     <div class="row">
       <div class="col-3">
-        <button @click="modalShow" type="button" class="btn btn-block btn-primary mb-4" style="background-color: #a6658d; border-style: none;">投稿</button>
-        <MealPostModal ref="child"/>
+        <button @click="openModal" type="button" class="btn btn-block btn-primary mb-4" style="background-color: #a6658d; border-style: none;">投稿</button>
+        <MealPostModal v-show="showModal" @close="closeModal" />
         <Calendar :meals="meals" @change-day="changeDay"/>
       </div>
       <div class="col-9">
@@ -16,7 +16,7 @@
 <script>
 import Calendar from './components/Calendar.vue'
 import MealList from './components/MealList.vue'
-import MealPostModal from './components/MealList.vue'
+import MealPostModal from './components/MealPostModal.vue'
 
 export default {
   name: 'app',
@@ -26,6 +26,7 @@ export default {
     MealPostModal,
   },
   data: () => ({
+    showModal: false,
     selectedDay: new Date(),
     meals: [{
         id: new Date().getTime().toString(16),
@@ -37,10 +38,13 @@ export default {
   }),
   methods: {
     changeDay: function(selectedDay) {
-      this.$set(this, 'selectedDay', selectedDay);
+      this.selectedDay = selectedDay;
     },
-    modalShow: function() {
-      this.$refs.child.$emit('show');
+    openModal: function() {
+      this.showModal = true
+    },
+    closeModal: function() {
+      this.showModal = false
     }
   },
   mounted: function() {
